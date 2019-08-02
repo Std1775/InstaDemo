@@ -1,0 +1,6 @@
+# Given a terminal with pipenv already enabled
+# Steps to enable this pipenv in another terminal
+$ pipenv --venv
+  /home/std1775/.local/share/virtualenvs/InstaDemo-WFuC0ONp
+# Open another terminal
+$ source /home/std1775/.local/share/virtualenvs/InstaDemo-WFuC0ONp/bin/activate

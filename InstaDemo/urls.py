@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # include URLs from Insta App module
     path('', include('Insta.urls')),
-    # include URLs from django.contrib.auth App module
+    # include URLs from django.contrib.auth App module for login
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/signup/', SignUp.as_view(), name="signup")
 ]

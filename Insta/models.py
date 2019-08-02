@@ -114,6 +114,6 @@ class Like(models.Model):
         unique_together = ("post", "user")
 
     def __str__(self):
-        return "Like: " + self.user + ' likes ' + self.post
+        return "Like: " + self.user.username + ' likes ' + self.post.title
 
 # TODO: Implement comment model

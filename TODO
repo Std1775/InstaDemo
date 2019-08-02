@@ -1,0 +1,6 @@
+Implement following/followed by feature.
+Implement user edit profile feature.
+Implement comment posts feature.
+Test the above features. Those are all included in the course.
+User should have their own post_create.html. It shouldn't be accessible for unauthorized user.
+Create User App and separate it from Insta App which is made for posts.

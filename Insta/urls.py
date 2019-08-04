@@ -16,9 +16,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from Insta.views import HelloWorldView
+from Insta.views import HelloWorldView, PostsView, PostDetailView
 
 
 urlpatterns = [
-    path('', HelloWorldView.as_view(), name='helloworld')
+    path('', HelloWorldView.as_view(), name='helloworld'),
+    path('posts/', PostsView.as_view(), name='posts'),
+    # provide primary key(int) with url /post
+    path('post/<int:pk>', PostDetailView.as_view(), name='post_detail')
 ]

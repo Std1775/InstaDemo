@@ -1,0 +1,12 @@
+{% load static %}
+<div>
+    <!-- show all images in PostsView. PostsViews has self.object_list -->
+    {% for post in object_list %}
+    <!-- anchor tag   -->
+    <!-- forward to localhost:8080/insta when clicking on the image   -->
+    <!-- url search for the name of one of the urls in urls.py   -->
+        <a href="{% url 'post_detail' post.id %}">
+            <img src="/{{post.image}}">
+        </a>
+    {% endfor %}
+</div>

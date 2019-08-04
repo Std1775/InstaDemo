@@ -1,0 +1,10 @@
+<h1>Login</h1>
+
+<form method="post">
+    <!-- Template language: Django script -->
+    <!-- Security to project the form, use it every time when creating a form   -->
+    {% csrf_token %}
+    <!-- Django variable: call form.as_p function: show each element as paragraph   -->
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>

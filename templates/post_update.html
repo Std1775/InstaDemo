@@ -1,0 +1,10 @@
+<h1>Edit Post</h1>
+
+<form action="", method="post" enctype="multipart/form-data">
+    <!-- Template language: Django script -->
+    <!-- Security to project the form, use it every time when creating a form   -->
+    {% csrf_token %}
+    <!-- Django variable: call form.as_p function: show each element as paragraph   -->
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>

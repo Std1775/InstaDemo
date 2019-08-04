@@ -1,4 +1,11 @@
+<div>
+    <a href="{% url 'post_update' object.id %}">Update Post</a>
+</div>
+<div>
+    <a href="{% url 'post_delete' object.id %}">Delete Post</a>
+</div>
 <p>
+    <!-- Django variable: Title   -->
     {{ object.title}}
 </p>
 <img src="/{{object.image}}">

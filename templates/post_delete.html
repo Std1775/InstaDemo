@@ -1,0 +1,10 @@
+<h1>Deletes Post</h1>
+
+<form action="", method="post" enctype="multipart/form-data">
+    <!-- Template language: Django script -->
+    <!-- Security to project the form, use it every time when creating a form   -->
+    {% csrf_token %}
+    <!-- Django variable: call form.as_p function: show each element as paragraph   -->
+    <p>DO you want to delete "{{post.title}}" ?</p>
+    <button type="submit">Delete</button>
+</form>

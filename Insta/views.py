@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from annoying.decorators import ajax_request
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from Insta.models import Post
+from Insta.models import Post, Like, InstaUser, UserConnection
 from django.urls import reverse_lazy
 from Insta.forms import CustomUserCreateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -23,6 +24,14 @@ class PostsView(ListView):
     model = Post
     template_name = "index.html"
 
+    # problematic method, need fix
+    # def get_queryset(self):
+    #     current_user = self.request.user
+    #     following = set()
+    #     for conn in UserConnection.objects.filter(creator=current_user).select_related('following'):
+    #         following.add(conn.following)
+    #     return Post.objects.filter(author__in=following)
+
 
 class PostDetailView(DetailView):
     """
@@ -41,6 +50,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     Model: post
     Template: 'post_create.html'
     """
+
     model = Post
     # html page name
     template_name = 'post_create.html'
@@ -73,3 +83,30 @@ class SignUp(CreateView):
     form_class = CustomUserCreateForm
     template_name = 'signup.html'
     success_url = reverse_lazy("login")
+
+
+# function based view to respond ajax request
+@ajax_request
+def addLike(request):
+    post_pk = request.POST.get('post_pk')
+    post = Post.objects.get(pk=post_pk)
+    try:
+        like = Like(post=post, user=request.user)
+        # save function may fail since we have defined unique_together in Like Model(models.py)
+        like.save()
+        result = 1
+    except Exception as e:
+        like = Like.objects.get(post=post, user=request.user)
+        like.delete()
+        result = 0
+
+    return {
+        'result': result,
+        'post_pk': post_pk
+    }
+
+
+class UserDetailView(DetailView):
+    model = InstaUser
+    template_name = 'user_detail.html'
+
